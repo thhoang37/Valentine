@@ -48,5 +48,82 @@
     <a class="button" href="follow-up.html">Yes!♡</a>
     <a class="button" href="follow-up.html">Absolutely!♡</a>
   </div>
+  /* Position a container that holds all hearts */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Let clicks pass through */
+      overflow: hidden;
+      z-index: 9999; /* Make sure it’s on top */
+    }
+
+    /* A single heart shape (using squares + border-radius for the lobes) */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff5e81;
+      transform: rotate(45deg);
+      animation: floatUp 5s ease-in infinite;
+      animation-delay: calc(var(--i) * 0.5s);
+      opacity: 0;
+    }
+
+    /* Create the “lobes” of the heart */
+    .heart:before,
+    .heart:after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff5e81;
+      border-radius: 50%;
+    }
+    .heart:before {
+      left: 0;
+      top: -10px;
+    }
+    .heart:after {
+      left: -10px;
+      top: 0;
+    }
+
+    /* Keyframes to make hearts float upwards and fade out */
+    @keyframes floatUp {
+      0% {
+        bottom: -50px;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100vh; /* move it up off the screen */
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hearts container -->
+  <div class="hearts"></div>
+
+  <!-- Script to generate multiple hearts with random horizontal positions -->
+  <script>
+    const heartsContainer = document.querySelector('.hearts');
+    const numberOfHearts = 25; // how many hearts you want
+
+    for (let i = 0; i < numberOfHearts; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      // Random horizontal position (0 to 100vw)
+      heart.style.left = Math.random() * 100 + 'vw';
+      // Use a custom property to stagger the animation
+      heart.style.setProperty('--i', i);
+      heartsContainer.appendChild(heart);
+    }
 </body>
 </html>
