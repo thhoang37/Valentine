@@ -32,14 +32,25 @@
 </head>
 <body>
   <h1>Just One More Thing...</h1>
-
-  <img 
-    src="images/us.gif" 
-    alt="Sweet Valentine Photo">
-  
   <p>
     Whatever we do, I'm just happy to be with you. <br>
     Happy Valentine's Day!
   </p>
+
+   <form action="https://formspree.io/f/mnnjpydw" method="POST">
+    <div class="form-group">
+      <label for="mealChoice">Which meal did you choose?</label>
+      <input type="text" id="mealChoice" name="mealChoice" />
+    </div>
+    <div class="form-group">
+      <label for="activityChoice">Which activity did you pick?</label>
+      <input type="text" id="activityChoice" name="activityChoice" />
+    </div>
+    <div class="form-group">
+      <label for="endChoice">How do you want to end the night?</label>
+      <input type="text" id="endChoice" name="endChoice" />
+    </div>
+    <button type="submit">Send My Choices</button>
+  </form>
 </body>
 </html>
